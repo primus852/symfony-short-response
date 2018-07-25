@@ -5,7 +5,7 @@
     "type": "package",
     "require": {
         "php": ">=5.5.9|>=7.0.8",
-        "symfony/http-foundation": "3.3.*",
+        "symfony/http-foundation": "3.3.*"
     },
     "license": "mit",
     "authors": [
