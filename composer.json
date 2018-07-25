@@ -1,6 +1,6 @@
 {
     "name": "primus852/symfony-short-response",
-	"version": "1.0.0",
+    "version": "1.0.0",
     "description": "Simple JSON Responses for a Symfony Project",
     "type": "package",
     "require": {
