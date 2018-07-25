@@ -1,0 +1,22 @@
+{
+    "name": "primus852/symfony-short-response",
+    "description": "Simple JSON Responses for a Symfony Project",
+    "type": "package",
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "license": "mit",
+    "authors": [
+        {
+            "name": "Torsten Wolter",
+            "email": "findnibbler@gmail.com",
+            "homepage": "https://leaguestreams.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "primus852\\ShortResponse\\": "src/"
+        }
+    }
+}
