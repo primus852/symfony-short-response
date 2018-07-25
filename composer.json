@@ -14,7 +14,7 @@
             "homepage": "https://leaguestreams.net"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "primus852\\ShortResponse\\": "src/"
