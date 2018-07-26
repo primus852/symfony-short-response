@@ -3,8 +3,6 @@
 namespace primus852\ShortResponse;
 
 
-use Symfony\Component\HttpFoundation\JsonResponse;
-
 class ShortResponse
 {
 
@@ -12,96 +10,102 @@ class ShortResponse
      * @param string $result
      * @param string $message
      * @param array $extra
-     * @return JsonResponse
+     * @throws JsonException
      */
-    static function json(string $result, string $message, array $extra = array())
+    public static function json(string $result, string $message, array $extra = array())
     {
-        return new JsonResponse(array(
-            'result' => $result,
-            'message' => $message,
-            'extra' => $extra
-        ));
+        self::display($result, $message, $extra);
     }
 
     /**
      * @param string $message
      * @param array $extra
-     * @return JsonResponse
+     * @throws JsonException
      */
-    static function success(string $message, array $extra = array())
+    public static function success(string $message, array $extra = array())
     {
-        return new JsonResponse(array(
-            'result' => 'success',
-            'message' => $message,
-            'extra' => $extra
-        ));
+        self::display('success', $message, $extra);
     }
+
 
     /**
      * @param string $message
      * @param array $extra
-     * @return JsonResponse
+     * @throws JsonException
      */
-    static function error(string $message, array $extra = array())
+    public static function error(string $message, array $extra = array())
     {
-        return new JsonResponse(array(
-            'result' => 'error',
-            'message' => $message,
-            'extra' => $extra
-        ));
+        self::display('error', $message, $extra);
     }
 
     /**
      * @param string $exception
-     * @return JsonResponse
+     * @throws JsonException
      */
-    static function mysql(string $exception)
+    public static function mysql(string $exception = 'hidden')
     {
-        return new JsonResponse(array(
-            'result' => 'error',
-            'message' => 'Fehler in der Datenbank. Der Administrator ist informiert.',
-            'extra' => array(
-                'exception' => $exception
-            )
+        self::display('error', 'Database Error', array(
+            'exception' => $exception
         ));
     }
 
     /**
      * @param string $message
      * @param string $exception
-     * @return JsonResponse
+     * @throws JsonException
      */
-    static function exception(string $message, string $exception)
+    public static function exception(string $message, string $exception = 'hidden')
     {
-        return new JsonResponse(array(
-            'result' => 'error',
-            'message' => $message,
-            'extra' => array(
-                'exception' => $exception
-            )
+        self::display('error', $message, array(
+            'exception' => $exception
         ));
     }
 
     /**
-     * @return JsonResponse
+     * @throws JsonException
      */
-    static function denied()
+    public static function denied()
     {
-        return new JsonResponse(array(
-            'result' => 'error',
-            'message' => 'Keine Berechtigung',
-            'extra' => array()
-        ));
+        self::display('error', 'Access denied');
     }
 
     /**
      * @param string $result
-     * @return JsonResponse
+     * @throws JsonException
      */
-    static function uploadError(string $result)
+    public static function uploadError(string $result)
     {
-        return new JsonResponse(array(
+        self::display(array(
             'error' => $result
         ));
+    }
+
+    /**
+     * @param mixed $result | can override the whole json if array
+     * @param string $message
+     * @param array $extras
+     * @param array $headers
+     * @return string
+     * @throws JsonException
+     */
+    private static function display($result, string $message = '', array $extras = array(), array $headers = array('Content-Type' => 'application/json'))
+    {
+
+        foreach ($headers as $header => $value) {
+            header($header, $value);
+        }
+
+        $json = is_array($result) ? json_encode($result) : json_encode(array(
+            'result' => $result,
+            'message' => $message,
+            'extra' => $extras
+        ));
+
+
+        if (json_last_error()) {
+            throw new JsonException;
+        }
+
+        return $json;
     }
 }
