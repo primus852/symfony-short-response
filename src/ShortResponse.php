@@ -108,4 +108,5 @@ class ShortResponse
 
         return $json;
     }
+
 }
