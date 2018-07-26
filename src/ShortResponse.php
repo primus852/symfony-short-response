@@ -10,41 +10,45 @@ class ShortResponse
      * @param string $result
      * @param string $message
      * @param array $extra
+     * @return string
      * @throws JsonException
      */
     public static function json(string $result, string $message, array $extra = array())
     {
-        self::display($result, $message, $extra);
+        return self::display($result, $message, $extra);
     }
 
     /**
      * @param string $message
      * @param array $extra
+     * @return string
      * @throws JsonException
      */
     public static function success(string $message, array $extra = array())
     {
-        self::display('success', $message, $extra);
+        return self::display('success', $message, $extra);
     }
 
 
     /**
      * @param string $message
      * @param array $extra
+     * @return string
      * @throws JsonException
      */
     public static function error(string $message, array $extra = array())
     {
-        self::display('error', $message, $extra);
+        return self::display('error', $message, $extra);
     }
 
     /**
      * @param string $exception
+     * @return string
      * @throws JsonException
      */
     public static function mysql(string $exception = 'hidden')
     {
-        self::display('error', 'Database Error', array(
+        return self::display('error', 'Database Error', array(
             'exception' => $exception
         ));
     }
@@ -52,11 +56,12 @@ class ShortResponse
     /**
      * @param string $message
      * @param string $exception
+     * @return string
      * @throws JsonException
      */
     public static function exception(string $message, string $exception = 'hidden')
     {
-        self::display('error', $message, array(
+        return self::display('error', $message, array(
             'exception' => $exception
         ));
     }
@@ -66,16 +71,17 @@ class ShortResponse
      */
     public static function denied()
     {
-        self::display('error', 'Access denied');
+        return self::display('error', 'Access denied');
     }
 
     /**
      * @param string $result
+     * @return string
      * @throws JsonException
      */
     public static function uploadError(string $result)
     {
-        self::display(array(
+        return self::display(array(
             'error' => $result
         ));
     }

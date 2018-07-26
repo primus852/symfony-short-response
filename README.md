@@ -5,6 +5,9 @@ Some Short Responses for JSON Output in Symfony
 This is rather a project to learn Packagist and providing a simple package
 
 ### Changelog
+#### 1.1.3
+Added `return`
+
 #### 1.1.2
 Used php `^7.0` instead of `7.0.8`
 
