@@ -5,8 +5,8 @@ Some Short Responses for JSON Output in Symfony
 This is rather a project to learn Packagist and providing a simple package
 
 ### Changelog
-#### 1.2.0
-Aaaaaaaaaand back to `symfony/http-foundation` due to too complicated changes in Symfony projects
+#### 1.2.1
+Aaaaaaaaaand back to `symfony/http-foundation` (3.4.*) due to too complicated changes in Symfony projects
 
 #### 1.1.3
 Added `return`
