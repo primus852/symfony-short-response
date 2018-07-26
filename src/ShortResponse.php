@@ -2,6 +2,7 @@
 
 namespace primus852\ShortResponse;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ShortResponse
 {
@@ -10,8 +11,7 @@ class ShortResponse
      * @param string $result
      * @param string $message
      * @param array $extra
-     * @return string
-     * @throws JsonException
+     * @return JsonResponse
      */
     public static function json(string $result, string $message, array $extra = array())
     {
@@ -21,8 +21,7 @@ class ShortResponse
     /**
      * @param string $message
      * @param array $extra
-     * @return string
-     * @throws JsonException
+     * @return JsonResponse
      */
     public static function success(string $message, array $extra = array())
     {
@@ -33,8 +32,7 @@ class ShortResponse
     /**
      * @param string $message
      * @param array $extra
-     * @return string
-     * @throws JsonException
+     * @return JsonResponse
      */
     public static function error(string $message, array $extra = array())
     {
@@ -43,8 +41,7 @@ class ShortResponse
 
     /**
      * @param string $exception
-     * @return string
-     * @throws JsonException
+     * @return JsonResponse
      */
     public static function mysql(string $exception = 'hidden')
     {
@@ -56,8 +53,7 @@ class ShortResponse
     /**
      * @param string $message
      * @param string $exception
-     * @return string
-     * @throws JsonException
+     * @return JsonResponse
      */
     public static function exception(string $message, string $exception = 'hidden')
     {
@@ -67,7 +63,7 @@ class ShortResponse
     }
 
     /**
-     * @throws JsonException
+     * @return JsonResponse
      */
     public static function denied()
     {
@@ -76,8 +72,7 @@ class ShortResponse
 
     /**
      * @param string $result
-     * @return string
-     * @throws JsonException
+     * @return JsonResponse
      */
     public static function uploadError(string $result)
     {
@@ -90,27 +85,16 @@ class ShortResponse
      * @param mixed $result | can override the whole json if array
      * @param string $message
      * @param array $extras
-     * @param array $headers
-     * @return string
-     * @throws JsonException
+     * @return JsonResponse
      */
-    private static function display($result, string $message = '', array $extras = array(), array $headers = array('Content-Type' => 'application/json'))
+    private static function display($result, string $message = '', array $extras = array())
     {
 
-        foreach ($headers as $header => $value) {
-            header($header, $value);
-        }
-
-        $json = is_array($result) ? json_encode($result) : json_encode(array(
+        $json = is_array($result) ? new JsonResponse($result) : new JsonResponse(array(
             'result' => $result,
             'message' => $message,
             'extra' => $extras
         ));
-
-
-        if (json_last_error()) {
-            throw new JsonException;
-        }
 
         return $json;
     }
