@@ -71,13 +71,23 @@ class ShortResponse
     }
 
     /**
-     * @param string $result
+     * @param string $message
      * @return JsonResponse
      */
-    public static function uploadError(string $result)
+    public static function fineuploadError(string $message)
     {
         return self::display(array(
-            'error' => $result
+            'error' => $message
+        ));
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public static function fineuploadSuccess()
+    {
+        return self::display(array(
+            'success' => true
         ));
     }
 
