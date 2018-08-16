@@ -82,12 +82,14 @@ class ShortResponse
     }
 
     /**
+     * @param array $extra
      * @return JsonResponse
      */
-    public static function fineuploadSuccess()
+    public static function fineuploadSuccess(array $extra = array())
     {
         return self::display(array(
-            'success' => true
+            'success' => true,
+            'extra' => $extra
         ));
     }
 
