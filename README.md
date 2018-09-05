@@ -5,6 +5,9 @@ Some Short Responses for JSON Output in Symfony
 This is rather a project to learn Packagist and providing a simple package
 
 ### Changelog
+#### 1.2.4
+Added Symfony4 compatibility
+
 #### 1.2.3
 Fixed missing extra fields on `fineuploaderSuccess`
 
