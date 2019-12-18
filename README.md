@@ -6,6 +6,9 @@ This is rather a project to learn Packagist and providing a simple package
 
 ### Changelog
 
+### 1.2.8
+Versioning
+
 ### 1.2.7
 Updated Http Foundation Dependency
 
