@@ -5,6 +5,10 @@ Some Short Responses for JSON Output in Symfony
 This is rather a project to learn Packagist and providing a simple package
 
 ### Changelog
+
+### 1.2.7
+Updated Http Foundation Dependency
+
 ### 1.2.6
 Bump Version
 
